@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+	$(document).ready(function(){
+		$('.btn-delete').on('click',function(){
+			var userId = $(this).attr('data-id');
+			if(confirm("Do you want to delete?")){
+				
+				window.location="http://localhost:8080/user/delete/"+userId;
+			}
+			// 
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>User List</h1>
+	<a th:href="@{/user/add}">Add New user</a>
+	<table >
+		<tr>
+			<th>ID : </th>
+			<th>Name : </th>
+			<th>Gender : </th>
+			<th>Action : </th>
+		</tr>
+		<tr th:each="u : ${users}">
+			<td th:text="${u.getId()}">
+			</td><td th:text="${u.getName()}">
+			</td><td th:text="${u.getGender()}">
+			</td><td>
+			<a th:href="@{/user/one/{user_id} (user_id=${u.getId()})}">view</a> 
+			<a th:href="@{/user/update/{id} (id=${u.getId()})}">update</a> 
+			<button class="btn-delete" th:attr="data-id=${u.getId()}">Delete</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

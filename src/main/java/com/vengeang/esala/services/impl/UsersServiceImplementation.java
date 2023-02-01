@@ -12,7 +12,7 @@ import com.vengeang.esala.services.UserService;
 @Service
 public class UsersServiceImplementation implements UserService{
 	
-
+	@Autowired
 	private UsersRepository userRepository;
 	
 	@Override

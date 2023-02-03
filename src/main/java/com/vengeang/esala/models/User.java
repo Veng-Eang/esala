@@ -1,14 +1,23 @@
 package com.vengeang.esala.models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class User {
+//	@NotNull(message = "Not null error custom!")
+	@NotNull
 	private Integer id;
+
+	@NotBlank
+	@NotEmpty
 	private String name;
 	private String gender;
 	
 	public User() {
 		super();
 	}
-	public User(Integer id, String name, String gender) {
+	public User(@NotNull Integer id,@NotBlank @NotEmpty String name, String gender) {
 		super();
 		this.id = id;
 		this.name = name;

@@ -2,9 +2,11 @@ package com.vengeang.esala.controller.hrd;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +44,13 @@ public class UserController {
 		return "hrd/user-add";
 	}
 	@PostMapping("/user/add/submit")
-	public String submitUser(User user) {
+	public String submitUser(@Valid User user, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()){
+			System.out.println("Error!!!!");
+			return "hrd/user-add";
+		}
+
+
 		System.out.println(user);
 		this.userService.saveUser(user);
 		return "redirect:/user/all";

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 // import java.util.function.Consumer;
 
+import com.github.javafaker.Faker;
 import org.springframework.stereotype.Repository;
 
 import com.vengeang.esala.models.User;
 
 @Repository
 public class UsersRepository {
+	Faker faker=new Faker();
 	List<User> userList=new ArrayList<>();
 	{
-		userList.add(new User(1, "Dara", "Male"));
-		userList.add(new User(2, "Khi Hort", "Male"));
-		userList.add(new User(3, "Sothy", "Male"));
-		userList.add(new User(4, "Ty Ty", "Female"));												
+		userList.add(new User(1, faker.name().fullName(), "Male"));
+		userList.add(new User(2, faker.name().fullName(), "Male"));
+		userList.add(new User(3, faker.name().fullName(), "Male"));
+		userList.add(new User(4, faker.name().fullName(), "Female"));
 	}
 	public List<User> getAll(){
 		return this.userList;
